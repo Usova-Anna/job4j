@@ -1,4 +1,4 @@
-﻿package ru.job4j.calculate;
+package ru.job4j.calculate;
 
 /** Это класс Calculate,
 * он будет что-то считать, 
@@ -10,7 +10,7 @@
 public class Calculate{
 /**Это главный метод.
 *Он принимает параметры:
-*@param String[] args
+*@param args аргументы
 */
 public static void main (String[] args){
 System.out.println("Hello there!");
