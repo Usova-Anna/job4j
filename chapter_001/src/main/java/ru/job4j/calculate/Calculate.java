@@ -1,16 +1,16 @@
-/** Это класс Calculate,
-* он будет что-то считать, 
-*скорее всего неправильно.
+п»їpackage ru.job4j.calculate;
+
+/** Р­С‚Рѕ РєР»Р°СЃСЃ Calculate,
+* РѕРЅ Р±СѓРґРµС‚ С‡С‚Рѕ-С‚Рѕ СЃС‡РёС‚Р°С‚СЊ, 
+*СЃРєРѕСЂРµРµ РІСЃРµРіРѕ РЅРµРїСЂР°РІРёР»СЊРЅРѕ.
 *@author Anna Usova
 *@since 17th June 2019
 *@version 1.0
 */
 public class Calculate{
-/**Это главный метод.
-*Он принимает параметры:
+/**Р­С‚Рѕ РіР»Р°РІРЅС‹Р№ РјРµС‚РѕРґ.
+*РћРЅ РїСЂРёРЅРёРјР°РµС‚ РїР°СЂР°РјРµС‚СЂС‹:
 *@param String[] args
-*@return ничего не возвращает, 
-* это ж void.
 */
 public static void main (String[] args){
 System.out.println("Hello there!");
