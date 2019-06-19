@@ -1,4 +1,4 @@
-package ru.job4j.calculate;
+﻿package ru.job4j.calculate;
 
 
 /** Это класс Calculate,
@@ -16,7 +16,7 @@ package ru.job4j.calculate;
 */
 
 
-public class Calculate{
+public class Calculate {
 
 /**Это главный метод.
 
@@ -26,7 +26,7 @@ public class Calculate{
 
 */
 
-public static void main (String[] args){
+public static void main(String[] args) {
 
     
 System.out.println("Hello there!");
