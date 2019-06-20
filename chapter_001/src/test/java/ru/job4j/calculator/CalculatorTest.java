@@ -1,4 +1,4 @@
-package ru.job4j.calculate;
+package ru.job4j.calculator;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -10,15 +10,15 @@ import static org.junit.Assert.assertThat;
 *@version 1.0
 */
 
-public class CalculateTest { 
+public class CalculatorTest {
 @Test
 	public void echoName() {
 	String input = "Petr";
 	String expect = "Echo, echo, echo : Petr";
-	Calculate calc = new Calculate();
+	Calculator calc = new Calculator();
 	String result = calc.echo(input);
 	assertThat(result, is(expect));
 	}
 }
-
+//One more comment to check history
 
