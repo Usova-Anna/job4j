@@ -3,21 +3,43 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-/**???? ???
-*
-*@author ????
-*@since 18th June 2019
-*@version 1.0
-*/
+/**Это тест.
+ *
+ *@author Anna
+ *@since 18th June 2019
+ *@version 1.0
+ */
 
 public class CalculatorTest {
-@Test
-	public void echoName() {
-	String input = "Petr";
-	String expect = "Echo, echo, echo : Petr";
-	Calculator calc = new Calculator();
-	String result = calc.echo(input);
-	assertThat(result, is(expect));
+	@Test
+	public void whenAddingSecondtoFirst() {
+		Calculator calc = new Calculator();
+		double result = calc.add(1D, 1D);
+		double expected = 2D;
+		assertThat(result, is(expected));
+	}
+
+	@Test
+	public void whenDiv4On2Then2() {
+		Calculator calc = new Calculator();
+		double result = calc.divide(4, 2);
+		double expected = 2;
+		assertThat(result, is(expected));
+	}
+
+	@Test
+	public void whenMultiply3on4Then12() {
+		Calculator calc = new Calculator();
+		double result = calc.multiply(3, 4);
+		double expected = 12;
+		assertThat(result, is(expected));
+	}
+	@Test
+	public void whenSubtract3From5() {
+		Calculator calc = new Calculator();
+		double result = calc.subtract(5, 3);
+		double expected = 2;
+		assertThat(result, is(expected));
 	}
 }
 
