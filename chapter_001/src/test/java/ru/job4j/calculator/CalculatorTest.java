@@ -20,5 +20,4 @@ public class CalculatorTest {
 	assertThat(result, is(expect));
 	}
 }
-//One more comment to check history
 
