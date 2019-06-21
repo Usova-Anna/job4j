@@ -49,4 +49,3 @@ public class Calculator {
         return "Echo, echo, echo : " + name;
     }
 }
-//Testing commiting through IDEA
