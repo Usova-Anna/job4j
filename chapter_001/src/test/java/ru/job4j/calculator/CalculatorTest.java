@@ -6,7 +6,7 @@ import static org.junit.Assert.assertThat;
 /**Это тест.
  *
  *@author Anna
- *@since 18th June 2019
+ *@since 21th June 2019
  *@version 1.0
  */
 
@@ -23,7 +23,7 @@ public class CalculatorTest {
 	public void whenDiv4On2Then2() {
 		Calculator calc = new Calculator();
 		double result = calc.divide(4, 2);
-		double expected = 2;
+		double expected = 2d;
 		assertThat(result, is(expected));
 	}
 
