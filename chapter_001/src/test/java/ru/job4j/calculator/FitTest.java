@@ -18,7 +18,7 @@ public class FitTest {
         public void womanWeightWhen180() {
     Fit fit = new Fit();
     double weight = fit.womanWeight(180);
-    assertThat(weight, closeTo(80.5,0.1));
+    assertThat(weight,  closeTo(80.5, 0.1));
     }
 
 }
