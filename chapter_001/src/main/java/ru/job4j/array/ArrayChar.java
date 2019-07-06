@@ -11,6 +11,15 @@ public class ArrayChar {
      * @return true(найдено в начале) или false (не найдено).
      */
     public boolean startsW(String word, String prefix) {
-        return word.startsWith(prefix);
+        boolean result = true;
+        char[] pref = prefix.toCharArray();
+        char[] wrd = word.toCharArray();
+        for (int ip = 0; ip < pref.length; ip++) { //index prefix'a
+        if (pref[ip] != wrd[ip]) {
+            result = false;
+            break;
+        }
+        }
+        return result;
     }
 }
