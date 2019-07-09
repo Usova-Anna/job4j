@@ -1,26 +1,19 @@
 package ru.job4j.array;
 
 public class MatrixCheck {
+    /**Метод проверяет, что в обеих диагоналях элементы одинаковые (true или false).
+     *
+     * @param data принимает квадратный массив с булевыми значениями.
+     * @return true или false - обе диагонали заполнены однородными данными или нет.
+     */
     public boolean mono(boolean[][] data) {
-
-        boolean diagonal1 = true; //Принимаем по умолчанию, что в первой диагонали элементы одинаковые.
-        boolean diagonal2 = true; //Принимаем по умолчанию, что во второй диагонали элементы одинаковые.
+        boolean result = true; //Принимаем по умолчанию, что в обеих диагоналях элементы одинаковые.
         for (int i = 0; i < data.length; i++) {
-            for (int j = 0; j < data[i].length; j++) {
-                if (i == j) { //анализируем первую диагональ
-                    if (data[i][j] != diagonal1) { //Если текущий элемент не совпадает с первым, результат по первой диагонали - false.
-                        diagonal1 = false;
-                    }
-                }
-
-                if (i + j == data[i].length - 1) { //анализируем вторую диагональ
-                    if (data[i][j] != diagonal2) { //Если текущий элемент не совпадает с первым, результат по второй диагонали - false.
-                        diagonal2 = false;
-                    }
-                }
+            if ((data[0][0] != data[i][i]) || (data[0][data[0].length - 1] != data[i][data[i].length - 1 - i])) {
+                result = false; break;
             }
         }
 
-        return diagonal1 && diagonal2;
+        return result;
     }
 }
