@@ -15,7 +15,8 @@
 
     <modules>
        <module>chapter_001</module>
-     </modules>
+       <module>puzzle</module>
+    </modules>
 
 <build>
     <plugins>
