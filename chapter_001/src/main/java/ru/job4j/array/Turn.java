@@ -1,6 +1,11 @@
 package ru.job4j.array;
 
 public class Turn {
+    /**Переворачивает массив.
+     *
+     * @param array целочисленный массив.
+     * @return перевёрнутый целочисленный массив.
+     */
     public int[] back(int[] array) {
         int temp;
         for (int i = 0; i != array.length / 2; i++) {

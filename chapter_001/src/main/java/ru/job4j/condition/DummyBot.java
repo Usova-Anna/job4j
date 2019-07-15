@@ -11,12 +11,12 @@ public class DummyBot {
      * @return ответ.
      */
     public String answer(String question) {
-        String defaultAnswer = "Это ставит меня в тупик. Задайте другой вопрос.";
+        String answer = "Это ставит меня в тупик. Задайте другой вопрос.";
         if (question.equals("Привет, Бот.")) {
-            defaultAnswer = "Привет, умник.";
+            answer = "Привет, умник.";
         } else if (question.equals("Пока.")) {
-            defaultAnswer = "До скорой встречи.";
+            answer = "До скорой встречи.";
         }
-        return defaultAnswer;
+        return answer;
     }
 }

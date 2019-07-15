@@ -1,6 +1,12 @@
 package ru.job4j.loop;
 
 public class PrimeNumber {
+
+    /**Ищем простое число.
+     *
+     * @param finish последнее число
+     * @return сколько простых чисел было.
+     */
     public int calc(int finish) {
         int count = 0;
         for (int i = 2; i <= finish; i++) {

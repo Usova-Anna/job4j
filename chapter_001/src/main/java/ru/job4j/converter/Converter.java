@@ -17,16 +17,16 @@ public class Converter {
      * @return рубли.
      */
     public double rubleToDollar(int value) {
-        double kursDollara = 60;
-        return value / kursDollara;
+        double kursDoll = 60;
+        return value / kursDoll;
     }
     /** Конвертируем доллары в рубли.
      * @param value  рубли.
      * @return доллары.
      */
     public double dollarToRuble(int value) {
-        double kursRublia = 60;
-        return value * kursRublia;
+        double kursRub = 60;
+        return value * kursRub;
     }
 
     /** Конвертируем евро в рубли.
@@ -34,7 +34,7 @@ public class Converter {
      * @return евро.
      */
     public double euroToRuble(int value) {
-        double kursRublia = 70;
-        return value * kursRublia;
+        double kursRoub = 70;
+        return value * kursRoub;
     }
 }
