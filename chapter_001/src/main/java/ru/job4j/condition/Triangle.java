@@ -44,9 +44,9 @@ public class Triangle {
      */
     public double area(int x1, int y1, int x2, int y2, int x3, int y3) {
         double rsl = -1;
-        double a = new Point().distance(x1, y1, x2, y2); //длина стороны a
-        double b = new Point().distance(x2, y2, x3, y3); //длина стороны b
-        double c = new Point().distance(x1, y1, x3, y3); //длина стороны c
+        double a = Point.distance(x1, y1, x2, y2); //длина стороны a
+        double b = Point.distance(x2, y2, x3, y3); //длина стороны b
+        double c = Point.distance(x1, y1, x3, y3); //длина стороны c
         double p = period(a, b, c); //полупериметр
         if (this.exist(a, b, c)) {
             rsl = Math.sqrt(p * (p - a) * (p - b) * (p - c)); // написать формулу для расчета площади треугольника

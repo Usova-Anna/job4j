@@ -1,12 +1,13 @@
 package ru.job4j.condition;
 
 public class SqMax {
-    /**Находит максимум из четырёх чисел.
+    /**
+     * Находит максимум из четырёх чисел.
      *
-     * @param first первое число
+     * @param first  первое число
      * @param second второе число
-     * @param third третье число
-     * @param forth четвёртое число
+     * @param third  третье число
+     * @param forth  четвёртое число
      * @return максимум из четырёх
      */
     public static int max(int first, int second, int third, int forth) {
@@ -16,7 +17,7 @@ public class SqMax {
                 if (first > forth) {
                     result = first;
                 }
-            } else if (third>forth){
+            } else if (third > forth) {
                 result = third;
             }
         } else if (second > third) {

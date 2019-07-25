@@ -9,8 +9,27 @@ public class Point {
      * @param y2 координата второй точки по оси у.
      * @return возвращает длину прямой.
      */
-    public double distance(int x1, int x2, int y1, int y2) {
-        return Math.sqrt(Math.pow(x2 - x1,  2) + Math.pow(y2 - y1,  2));
+    /**
+     * Это поля объекта. Они доступны только конкретному объекту.
+     */
+    private int x, y;
 
+    /**
+     * Конструктор, который принимает начальное состояние объекта "точка"
+     *
+     * @param first  координата x
+     * @param second координата y
+     */
+    public Point(int first, int second) {
+        this.x = first;
+        this.y = second;
+    }
+
+    public static double distance(int x1, int x2, int y1, int y2) {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+
+    public void info() {
+        System.out.println(String.format("Point [%s, %s]", this.x, this.y));
     }
 }
