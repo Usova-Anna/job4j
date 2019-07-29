@@ -1,6 +1,15 @@
 package ru.job4j.condition;
 
 public class Triangle {
+    private Point first;
+    private Point second;
+    private Point third;
+
+    public Triangle(Point ap, Point bp, Point cp) {
+        this.first = ap;
+        this.second=bp;
+        this.third=cp;
+    }
     /**
      * Метод вычисления полупериметра по длинам сторон.
      *
