@@ -23,4 +23,31 @@ public class MaxTest {
         int resultTested = chislo.max(-5, -5);
         assertThat(resultTested, is(-5));
     }
+
+    @Test
+    public void whenComparing4AndMaxIs1st() {
+        Max chislo = new Max();
+        int resultTested = chislo.max(9,2,-6,3);
+        assertThat(resultTested, is(9));
+    }
+    @Test
+    public void whenComparing4AndMaxIs2nd() {
+        Max chislo = new Max();
+        int resultTested = chislo.max(-9,9,6,3);
+        assertThat(resultTested, is(9));
+    }
+    @Test
+    public void whenComparing4AndMaxIs3rd() {
+        Max chislo = new Max();
+        int resultTested = chislo.max(-9,2,6,3);
+        assertThat(resultTested, is(6));
+    }
+
+    @Test
+    public void whenComparing4AndMaxIs4th() {
+        Max chislo = new Max();
+        int resultTested = chislo.max(-9,2,-6,3);
+        assertThat(resultTested, is(3));
+    }
+
 }
