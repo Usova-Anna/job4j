@@ -45,9 +45,6 @@ public class Point {
         return Math.sqrt(Math.pow(this.x - that.x, 2) + Math.pow(this.y - that.y, 2) + Math.pow(this.z - that.z, 2));
     }
 
-    public double distance(Point that) {
-        return sqrt(pow(this.x - that.x, 2) + pow(this.y - that.y, 2));
-    }
 
     public void info() {
         System.out.println(String.format("Point [%s, %s]", this.x, this.y));
