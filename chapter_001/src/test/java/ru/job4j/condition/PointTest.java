@@ -8,9 +8,19 @@ import static org.hamcrest.Matchers.is;
 public class PointTest {
     @Test
     public void whenX5Y4X2Y3() {
-        Point point = new Point(0, 0);
-        double tested = point.distance(5, 2, 4, 3);
+        Point a = new Point(0, 0);
+        Point b = new Point(2, 2);
+        double tested = a.distance(b);
         double expected = 3.1622776601683795;
+        assertThat(tested, is(expected));
+    }
+
+    @Test
+    public void whenX5Y4z1X2Y3z5() {
+        Point point = new Point(3, 0, 0);
+        Point anotherPoint = new Point(0, 4, 0);
+        double tested = point.distance3d(anotherPoint);
+        double expected = 5;
         assertThat(tested, is(expected));
     }
 
