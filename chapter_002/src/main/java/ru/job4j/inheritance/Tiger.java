@@ -9,5 +9,4 @@ public class Tiger extends Predator {
     public static void main(String[] args) {
         Tiger tiger = new Tiger();
     }
-
 }
