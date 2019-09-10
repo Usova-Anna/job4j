@@ -21,7 +21,9 @@ public class Tracker {
         //item.setId(this.generateId());
         //
         //В качестве ключа нельзя использовать индекс.
+        System.out.println("position до добавления = "+position);
         this.items[position++] = item;
+        System.out.println("position после добавления = "+position);
         return item;
     }
 
@@ -116,6 +118,7 @@ public class Tracker {
     public Item[] findAll() {
         //   получение списка всех заявок - возвращает копию массива this.items без null элементов;
         Item[] notNullitems = new Item[position];
+        System.out.println("position = "+position);
         int size = 0;
         for (Item i : this.items) {
             if (i != null) {
