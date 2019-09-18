@@ -12,9 +12,9 @@ public class StartUI {
      * Пользователь работает с меню
      */
     public void init() {
-        boolean exit = false;
+        boolean run = true;
         Scanner scanner = new Scanner(System.in);
-        while (exit == false) {
+        while (run) {
             //ЗАПРОС ВЫБОРА ПУНКТА МЕНЮ
             System.out.println("ВЫБЕРИТЕ ПУНКТ МЕНЮ:");
             System.out.println("0. Add new Item\n" +
@@ -85,7 +85,7 @@ public class StartUI {
                 case 6: {
                     System.out.println(" - ВЫХОДИМ");
                     //QUIT
-                    exit = true;
+                    run = true;
                     break;
                 }
                 default:
@@ -101,7 +101,7 @@ public class StartUI {
     }
 
     public static void main(String[] args) {
-        // Input input = new StubInput(new String[]{"create sub task"});
+
         StartUI startUI = new StartUI();
         startUI.init();
     }
