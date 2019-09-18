@@ -1,8 +1,4 @@
 package ru.job4j.tracker;
-//import jdk.swing.interop.SwingInterOpUtils;
-
-import java.sql.SQLOutput;
-import java.util.Scanner;
 
 /**
  * Управление пользовательским вводом, добавление данных в объект трекер
@@ -11,81 +7,50 @@ public class StartUI {
     /**
      * Пользователь работает с меню
      */
-    public void init() {
+    public void init(Input scanner) {
         boolean run = true;
-        Scanner scanner = new Scanner(System.in);
+        Tracker tracker = new Tracker();
         while (run) {
             //ЗАПРОС ВЫБОРА ПУНКТА МЕНЮ
-            System.out.println("ВЫБЕРИТЕ ПУНКТ МЕНЮ:");
-            System.out.println("0. Add new Item\n" +
-                    "1. Show all items\n" +
-                    "2. Edit item\n" +
-                    "3. Delete item\n" +
-                    "4. Find item by Id\n" +
-                    "5. Find items by name\n" +
-                    "6. Exit Program");
-            int choice = Integer.valueOf(scanner.nextInt());
-            scanner.nextLine();
+            this.showMenu();
+            int choice = scanner.askInt("Введите пункт меню");
+            //scanner.nextLine(); закомментировано, т.к. метода nextLine больше нет у объекта scanner. Он стал объектом ConsoleInput
             System.out.print("ВЫ ВЫБРАЛИ " + choice);
-            Tracker tracker = new Tracker();
             //РАЗВЕТВЛЕНИЕ ЛОГИКИ В ЗАВИСИМОСТИ ОТ ВЫБРАННОГО ПУНКТА МЕНЮ
             switch (choice) {
                 case 0: {
-                    System.out.println(" - ДОБАВЛЕНИЕ ЗАЯВКИ.");
                     //ADD
-
-                    System.out.println("Введите название заявки:");
-                    String name = scanner.nextLine();
-                    System.out.println("Введите описание заявки:");
-                    Item item = new Item(name, scanner.nextLine(), System.currentTimeMillis());
-                    tracker.add(item);
-                    System.out.println("Заявка добавлена");
+                    Actions.add(scanner, tracker);
                     break;
                 }
                 case 1: {
-                    System.out.println(" - ПОКАЗАТЬ ВСЕ ЗАЯВКИ");
                     //SHOW
-                    tracker.findAll();
+                    Actions.show(tracker);
                     break;
                 }
                 case 2: {
-                    System.out.println(" - РЕДАКТИРОВАТЬ ЗАЯВКУ");
                     //EDIT
-                    System.out.println("Введите ID заявки, которую хотите заменить");
-                    String id = scanner.nextLine();
-                    System.out.println("Введите название и описание");
-                    Item item = new Item(scanner.nextLine(), scanner.nextLine(), System.currentTimeMillis());
-                    tracker.replace(id, item);
+                    Actions.edit(scanner, tracker);
                     break;
                 }
                 case 3: {
-                    System.out.println(" - УДАЛИТЬ ЗАЯВКУ");
                     //DELETE
-                    String id = scanner.nextLine();
-                    System.out.println("Введите Id");
-                    tracker.delete(id);
+                    Actions.delete(scanner, tracker);
                     break;
                 }
                 case 4: {
-                    System.out.println(" - НАЙТИ ЗАЯВКУ ПО ID");
                     //FIND BY ID
-                    String id = scanner.nextLine();
-                    System.out.println("Введите Id");
-                    tracker.findById(id);
+                    Actions.findById(scanner, tracker);
                     break;
                 }
                 case 5: {
-                    System.out.println(" - НАЙТИ ЗАЯВКУ ПО НАЗВАНИЮ");
                     //FIND BY NAME
-                    System.out.println("Введите название заявки: ");
-                    String find = scanner.nextLine();
-                    tracker.findByName(find);
+                    Actions.findByName(scanner, tracker);
                     break;
                 }
                 case 6: {
-                    System.out.println(" - ВЫХОДИМ");
                     //QUIT
-                    run = true;
+                    run = Actions.quit();
                     break;
                 }
                 default:
@@ -94,16 +59,27 @@ public class StartUI {
             Item[] items = tracker.findAll(); //Получаем массив заявок после применения действия пункта меню
             System.out.println("СПИСОК ЗАЯВОК ПОСЛЕ ВЫПОЛНЕНИЯ ПУНКТА МЕНЮ:");
             for (Item zayavka : items) {
-                System.out.println(zayavka.getName() + " " + zayavka.getDesc());
+                System.out.println(zayavka.getId() + " " + zayavka.getName() + " " + zayavka.getDesc());
                 System.out.println();
             }
         }
     }
 
-    public static void main(String[] args) {
+    private void showMenu() {
+        System.out.println("ВЫБЕРИТЕ ПУНКТ МЕНЮ:");
+        System.out.println("0. Add new Item\n" +
+                "1. Show all items\n" +
+                "2. Edit item\n" +
+                "3. Delete item\n" +
+                "4. Find item by Id\n" +
+                "5. Find items by name\n" +
+                "6. Exit Program");
+    }
 
+    public static void main(String[] args) {
         StartUI startUI = new StartUI();
-        startUI.init();
+        Input input = new ConsoleInput();
+        startUI.init(input);
     }
 }
 

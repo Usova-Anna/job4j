@@ -17,7 +17,7 @@ public class Item {
 
     public String generateId() {
         //Реализовать метод генерации.
-        String id = String.valueOf((int)(Math.random() * 100500 + 1));
+        String id = String.valueOf((int) (Math.random() * 100500 + 1));
         return id;
     }
 

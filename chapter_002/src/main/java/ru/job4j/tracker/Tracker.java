@@ -21,9 +21,9 @@ public class Tracker {
         //item.setId(this.generateId());
         //
         //В качестве ключа нельзя использовать индекс.
-        System.out.println("position до добавления = "+position);
+        System.out.println("position до добавления = " + position);
         this.items[position++] = item;
-        System.out.println("position после добавления = "+position);
+        System.out.println("position после добавления = " + position);
         return item;
     }
 
@@ -76,7 +76,7 @@ public class Tracker {
         System.out.println("Массив заявок до удаления");
         for (int i = 0; i < this.items.length; i++) {
             if (this.items[i] != null) {
-                System.out.println("id:" + this.items[i].getId() + "; название: " + this.items[i].getName());
+                System.out.println("id: " + this.items[i].getId() + "; название: " + this.items[i].getName());
             }
         }
         //Поиск индекса удаляемого элемента по id
@@ -107,7 +107,7 @@ public class Tracker {
         System.out.println("Массив заявок после удаления элемента");
         for (int i = 0; i < this.items.length; i++) {
             if (this.items[i] != null) {
-                System.out.println("id:" + this.items[i].getId() + "; название" + this.items[i].getName());
+                System.out.println("id:" + this.items[i].getId() + "; название: " + this.items[i].getName());
             } else {
                 System.out.println("Null");
             }
@@ -118,7 +118,7 @@ public class Tracker {
     public Item[] findAll() {
         //   получение списка всех заявок - возвращает копию массива this.items без null элементов;
         Item[] notNullitems = new Item[position];
-        System.out.println("position = "+position);
+        System.out.println("position = " + position);
         int size = 0;
         for (Item i : this.items) {
             if (i != null) {
