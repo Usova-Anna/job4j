@@ -10,8 +10,7 @@ public class TrackerTest {
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() { //Тестируем add(Item item)
         Tracker tracker = new Tracker();
-        long created = System.currentTimeMillis();
-        Item item = new Item("test1", "testDescription", created);
+        Item item = new Item("test1");
         tracker.add(item);
         Item result = tracker.findById(item.getId());
         assertThat(result.getName(), is(item.getName()));
@@ -23,8 +22,8 @@ public class TrackerTest {
         System.out.println("----------------ЗАМЕНА ЗАЯВКИ------------");
         Tracker tracker = new Tracker();
         long created = System.currentTimeMillis();
-        Item item = new Item("test1", "testDescription", created);
-        Item item2 = new Item("test2", "testDescription2", created);
+        Item item = new Item("test1");
+        Item item2 = new Item("test2");
         Item saved = tracker.add(item);
         String id = saved.getId();
         item2.setId(id); //Присваиваем новой заявке старый Id
@@ -39,11 +38,11 @@ public class TrackerTest {
         System.out.println("----------------УДАЛЕНИЕ ЗАЯВКИ------------");
         Tracker tracker = new Tracker();
         long created = System.currentTimeMillis();
-        Item item = tracker.add(new Item("test1", "Заявка о пылесосе", created)); //Эти три строки повторяются в каждом тесте. Можно вынести их в класс?
-        Item item2 = tracker.add(new Item("test2", "Заявка о телевизоре", created));
-        Item item3 = tracker.add(new Item("test3", "Заявка о компьютере", created));
-        Item item4 = tracker.add(new Item("test4", "Заявка о ремонте", created));
-        Item item5 = tracker.add(new Item("test5", "Заявка о замене", created));
+        Item item = tracker.add(new Item("test1")); //Эти три строки повторяются в каждом тесте. Можно вынести их в класс?
+        Item item2 = tracker.add(new Item("test2"));
+        Item item3 = tracker.add(new Item("test3"));
+        Item item4 = tracker.add(new Item("test4"));
+        Item item5 = tracker.add(new Item("test5"));
         String id = item.getId();
         tracker.delete(id);
         Item result = tracker.findById(id);
@@ -55,12 +54,12 @@ public class TrackerTest {
         System.out.println("----------------ПОИСК ЗАЯВКИ ПО НАЗВАНИЮ------------");
         Tracker tracker = new Tracker();
         long created = System.currentTimeMillis();
-        Item item = tracker.add(new Item("test1", "testDescription", created));
-        Item item2 = tracker.add(new Item("test2", "testDescription2", created));
-        Item item3 = tracker.add(new Item("test3", "testDescription3", created));
-        Item item4 = tracker.add(new Item("test2", "testDescription4", created));
-        Item item5 = tracker.add(new Item("test5", "testDescription5", created));
-        Item item6 = tracker.add(new Item("test2", "testDescription6", created));
+        Item item = tracker.add(new Item("test1"));
+        Item item2 = tracker.add(new Item("test2"));
+        Item item3 = tracker.add(new Item("test3"));
+        Item item4 = tracker.add(new Item("test2"));
+        Item item5 = tracker.add(new Item("test5"));
+        Item item6 = tracker.add(new Item("test2"));
         Item[] initialArray = {item, item2, item3, item4, item5, item6};
         Item[] expectedResult = {item2, item4, item6};
         Item[] testedResult = tracker.findByName("test2");

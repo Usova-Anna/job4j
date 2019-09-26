@@ -9,7 +9,7 @@ public class Tracker {
      */
     private Item[] items = new Item[10];
     /**
-     * Указатель ячейки для новой заявки
+     * Указатель ячейки
      */
     private int position = 0;
 
@@ -73,7 +73,7 @@ public class Tracker {
         // Метод должен вернуть boolean результат - удалось ли провести операцию.
         boolean success = false;
         //Выводим массив на консоль до удаления элемента
-        System.out.println("Массив заявок до удаления");
+        System.out.println("\nМассив заявок до удаления");
         for (int i = 0; i < this.items.length; i++) {
             if (this.items[i] != null) {
                 System.out.println("id: " + this.items[i].getId() + "; название: " + this.items[i].getName());
@@ -93,18 +93,19 @@ public class Tracker {
         //Удаление и смещение элементов на место удалённого
         if (startPoint != -1) {
             //смещение элементов
-            System.out.println("Удаляем значение из ячейки с индексом " + startPoint);
+            System.out.println("\nУдаляем значение из ячейки с индексом " + startPoint);
             this.items[startPoint] = null;
             success = true;
             for (int i = startPoint; i < this.items.length - 1; i++) {
                 this.items[i] = this.items[i + 1];
             }
             this.items[this.items.length - 1] = null;
+            position--;
         } else {
-            System.out.println("Нет заявки с таким id");
+            System.out.println("\nНет заявки с таким id");
         }
         //Выводим массив на консоль после удаления элемента
-        System.out.println("Массив заявок после удаления элемента");
+        System.out.println("\nМассив заявок после удаления элемента");
         for (int i = 0; i < this.items.length; i++) {
             if (this.items[i] != null) {
                 System.out.println("id:" + this.items[i].getId() + "; название: " + this.items[i].getName());
@@ -143,9 +144,11 @@ public class Tracker {
         //      Элементы, у которых совпадает name, копирует в результирующий массив и возвращает его;
         Item[] rsl = new Item[position];
         int index = 0;
+        System.out.println("ИЩЕМ ЗАЯВКУ... РЕЗУЛЬТАТ:");
         for (int i = 0; i < items.length - 1; i++) {
             if (this.items[i] != null && this.items[i].getName().equals(key)) {
                 rsl[index++] = this.items[i];
+                System.out.println("ID " + this.items[i].getId());
             }
         }
         return Arrays.copyOf(rsl, index);
@@ -166,7 +169,7 @@ public class Tracker {
 
     public static void main(String[] args) {
         Tracker tracker = new Tracker(); //содержит заявки
-        Item item = new Item("Ремонт телевизора", "сломался конденсатор", 0);
+        Item item = new Item("Ремонт телевизора");
         tracker.add(item); //добавляем заявку в трекер
         tracker.showAll(); //выдаёт @f57...
         Item[] result = tracker.findAll();

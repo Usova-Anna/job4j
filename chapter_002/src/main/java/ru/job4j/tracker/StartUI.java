@@ -20,37 +20,37 @@ public class StartUI {
             switch (choice) {
                 case 0: {
                     //ADD
-                    Actions.add(scanner, tracker);
+                    StartUI.add(scanner, tracker);
                     break;
                 }
                 case 1: {
                     //SHOW
-                    Actions.show(tracker);
+                    StartUI.show(tracker);
                     break;
                 }
                 case 2: {
                     //EDIT
-                    Actions.edit(scanner, tracker);
+                    StartUI.edit(scanner, tracker);
                     break;
                 }
                 case 3: {
                     //DELETE
-                    Actions.delete(scanner, tracker);
+                    StartUI.delete(scanner, tracker);
                     break;
                 }
                 case 4: {
                     //FIND BY ID
-                    Actions.findById(scanner, tracker);
+                    StartUI.findById(scanner, tracker);
                     break;
                 }
                 case 5: {
                     //FIND BY NAME
-                    Actions.findByName(scanner, tracker);
+                    StartUI.findByName(scanner, tracker);
                     break;
                 }
                 case 6: {
                     //QUIT
-                    run = Actions.quit();
+                    run = StartUI.quit();
                     break;
                 }
                 default:
@@ -59,10 +59,18 @@ public class StartUI {
             Item[] items = tracker.findAll(); //Получаем массив заявок после применения действия пункта меню
             System.out.println("СПИСОК ЗАЯВОК ПОСЛЕ ВЫПОЛНЕНИЯ ПУНКТА МЕНЮ:");
             for (Item zayavka : items) {
-                System.out.println(zayavka.getId() + " " + zayavka.getName() + " " + zayavka.getDesc());
+                System.out.println(zayavka.getId() + " " + zayavka.getName());
                 System.out.println();
             }
         }
+    }
+
+    public static void add(Input scanner, Tracker tracker) {
+        System.out.println(" - ДОБАВЛЕНИЕ ЗАЯВКИ.");
+        String name = scanner.askString("Введите название заявки:");
+        Item item = new Item(name);
+        tracker.add(item);
+        System.out.println("Заявка добавлена");
     }
 
     private void showMenu() {
@@ -74,6 +82,43 @@ public class StartUI {
                 "4. Find item by Id\n" +
                 "5. Find items by name\n" +
                 "6. Exit Program");
+    }
+
+    public static void findByName(Input scanner, Tracker tracker) {
+        System.out.println(" - НАЙТИ ЗАЯВКУ ПО НАЗВАНИЮ");
+        String find = scanner.askString("Введите название заявки: ");
+        Item[] array = tracker.findByName(find);
+        System.out.println();
+    }
+
+    public static void show(Tracker tracker) {
+        System.out.println(" - ПОКАЗАТЬ ВСЕ ЗАЯВКИ");
+        tracker.findAll();
+    }
+
+    public static void findById(Input scanner, Tracker tracker) {
+        System.out.println(" - НАЙТИ ЗАЯВКУ ПО ID");
+        String id = scanner.askString("Введите Id");
+        tracker.findById(id);
+    }
+
+    public static void delete(Input scanner, Tracker tracker) {
+        System.out.println(" - УДАЛИТЬ ЗАЯВКУ");
+        String id = scanner.askString("Введите Id");
+        tracker.delete(id);
+    }
+
+    public static void edit(Input scanner, Tracker tracker) {
+        System.out.println(" - РЕДАКТИРОВАТЬ ЗАЯВКУ");
+        String id = scanner.askString("Введите ID заявки, которую хотите заменить");
+        Item item = new Item(scanner.askString("Введите название"));
+        item.setId(id);
+        tracker.replace(id, item);
+    }
+
+    public static boolean quit() {
+        System.out.println(" - ВЫХОДИМ");
+        return false;
     }
 
     public static void main(String[] args) {
