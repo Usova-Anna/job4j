@@ -2,6 +2,8 @@ package ru.job4j.search;
 
 import java.util.LinkedList;
 
+//Очередь с приоритетом на LinkedList[#147943]
+
 public class PriorityQueue {
     private LinkedList<Task> tasks = new LinkedList<>();
 
@@ -15,15 +17,19 @@ public class PriorityQueue {
     public void put(Task task) {
 
         int index = 0;
+        int indexInsert=0; //индекс вставки элемента, чтобы не запускать цикл повторно функцией indexOf
         for (Task element : tasks) {
+
             if (element.getPriority() > task.getPriority()) {
-                index = tasks.indexOf(element);
+                index = indexInsert;
+
+
                 break;
 
             } else {
                 index = tasks.size();
             }
-
+            indexInsert++;
         }
         this.tasks.add(index, task);
     }
@@ -35,7 +41,7 @@ public class PriorityQueue {
      */
 
     public Task take() {
-        // Task urgent = tasks.get(0);
+
         return tasks.remove(0);
     }
 }
