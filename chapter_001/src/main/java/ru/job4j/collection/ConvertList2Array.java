@@ -10,8 +10,10 @@ public class ConvertList2Array {
         System.out.println("Количество групп - " + groups);
         int[][] array = new int[groups][cells];
         int row = -1, cell = 0;
+        int itemIndex=0; //для избегания применения .indexOf()
         for (Integer num : list) {
-            if (list.indexOf(num) % cells == 0) { //индекс в foreach начинается с 1
+
+            if (itemIndex % cells == 0) {
                 row++;
                 cell = 0;
             } else {
@@ -19,6 +21,7 @@ public class ConvertList2Array {
 
             }
             array[row][cell] = num;
+            itemIndex++;
         }
         return array;
     }
