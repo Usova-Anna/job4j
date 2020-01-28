@@ -7,29 +7,15 @@ import java.util.Map;
 public class PassportOffice {
     private Map<String, Citizen> citizens = new HashMap<>();
 
+    /**
+     * Метод добавляет гражданина вне зависимости от того, был ли гражданин в citizens
+     */
     public boolean add(Citizen citizen) {
-        boolean rsl = false; //процедура добавления не произведена
-        boolean exists = true; //Такой гражданин уже есть в базе
-        if (citizens.size() == 0) {
-            exists = false;
-        }
-        for (String key : citizens.keySet()) {
-            if (!key.equals(citizen.getPassport())) {
-                exists = false; //Такого гражданина нет
-            }
-        }
-        if (!exists) { //Если такого гражданина нет
-            citizens.put(citizen.getPassport(), citizen); //то добавляем его
-            rsl = true;//добавлен
-        }
-        return rsl;
+        citizens.put(citizen.getPassport(), citizen);
+        return true;
     }
 
     public Citizen get(String passport) {
-        Citizen c = null;
-        if (citizens.containsKey(passport)) {
-            c = citizens.get(passport);
-        }
-        return c;
+        return citizens.get(passport);
     }
 }
