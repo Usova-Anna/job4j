@@ -1,8 +1,10 @@
 package ru.job4j.collection;
 
 import org.junit.Test;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
+
 public class PassportOfficeTest {
     @Test
     public void add() {
@@ -13,16 +15,12 @@ public class PassportOfficeTest {
     }
 
     @Test
-    public void addWhenCitizenAlreadyExists () {
+    public void addWhenCitizenAlreadyExists() {
         Citizen man = new Citizen("1236 996655", "Ужесин Есть Присутствуевич");
-
-
         PassportOffice po = new PassportOffice();
-        po.add(man); //1st adding
-        boolean actual = po.add(man); //2nd adding of the same person
+        po.add(man);
+        boolean actual = po.add(man);
         boolean expected = false;
-        assertThat(actual,is(expected));
-
+        assertThat(actual, is(expected));
     }
-
 }

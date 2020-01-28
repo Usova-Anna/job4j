@@ -10,9 +10,12 @@ public class PassportOffice {
     public boolean add(Citizen citizen) {
         boolean rsl = false; //процедура добавления не произведена
         boolean exists = true; //Такой гражданин уже есть в базе
-        for (String key:citizens.keySet()) {
+        if (citizens.size() == 0) {
+            exists = false;
+        }
+        for (String key : citizens.keySet()) {
             if (!key.equals(citizen.getPassport())) {
-                exists=false; //Такого гражданина нет
+                exists = false; //Такого гражданина нет
             }
         }
         if (!exists) { //Если такого гражданина нет
@@ -22,8 +25,11 @@ public class PassportOffice {
         return rsl;
     }
 
-
     public Citizen get(String passport) {
-        return null;
+        Citizen c = null;
+        if (citizens.containsKey(passport)) {
+            c = citizens.get(passport);
+        }
+        return c;
     }
 }
