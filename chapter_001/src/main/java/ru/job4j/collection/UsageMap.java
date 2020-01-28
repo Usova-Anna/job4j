@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 public class UsageMap {
     public static void main(String[] args) {
-
         HashMap<String, String> map = new HashMap<>();
         map.put("arseniy@mail.ru", "Иванов Арсений Евгеньевич");
         map.put("arseniy@mail.ru", "Иванов Арсений Евгеньевич");//дублируем значение, которое внесётся только единожды
