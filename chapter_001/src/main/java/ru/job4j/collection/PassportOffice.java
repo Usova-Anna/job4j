@@ -11,7 +11,7 @@ public class PassportOffice {
      * Метод добавляет гражданина вне зависимости от того, был ли гражданин в citizens
      */
     public boolean add(Citizen citizen) {
-        citizens.put(citizen.getPassport(), citizen);
+        citizens.putIfAbsent(citizen.getPassport(), citizen);
         return true;
     }
 
