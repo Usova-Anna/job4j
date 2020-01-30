@@ -20,7 +20,7 @@ public class PassportOfficeTest {
         PassportOffice po = new PassportOffice();
         po.add(man);
         boolean actual = po.add(man);
-        boolean expected = true;
+        boolean expected = false; //не добавлен второй раз, т.к. уже присутствует
         assertThat(actual, is(expected));
     }
 }
