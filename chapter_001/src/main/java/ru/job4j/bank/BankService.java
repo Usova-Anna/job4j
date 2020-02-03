@@ -57,8 +57,10 @@ User foundUser = null;
     public User findUserByRequisite(String requisite) {
         User user = null;
         for (Map.Entry<User, List<Account>> entry:users.entrySet()) {
-            if(entry.getValue().equals(requisite)) {
-                user= entry.getKey();
+            for (int i=0;i<entry.getValue().size();i++) {
+                if (entry.getValue().get(i).equals(requisite)){
+                    user = entry.getKey();
+                }
             }
         }
         return user;
