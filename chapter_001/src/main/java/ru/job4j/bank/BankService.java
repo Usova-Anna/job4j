@@ -1,5 +1,6 @@
 package ru.job4j.bank;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,34 +11,78 @@ public class BankService {
 
     // добавить пользователя в систему
     public void addUser(User user) {
-//Map.put(Пользователь, список счетов).
-// По умолчанию нужно добавить пустой список - new ArrayList<Account>().
-        //В методе должна быть проверка, что такого пользователя еще нет в системе.
-
+      users.putIfAbsent(user, new ArrayList<Account>());
     }
 
     //Должен добавить новый счет к пользователю.
     public void addAccount(String passport, Account account) {
-        //Первоначально пользователя нужно найти по паспорту.
-        // Для этого нужно использовать метод findByPassport.
-        //После этого мы получим список всех счетов пользователя и добавим новый счет к ним.
-        // В этом методе должна быть проверка, что такого счета у пользователя еще нет.
+         User owner = findByPassport(passport);
+if(users.get(owner).indexOf(account)==-1) { //если у этого клиента в его списке счетов отсутствует добавляемый счёт
+            users.get(owner).add(account);
+    System.out.println("Новый счёт добавлен для клиента "+ owner.getUsername());
+        }
+
     }
 
 
     // ищет пользователя по номеру паспорта.
     public User findByPassport(String passport) {
+User foundUser = null;
 
-        // Здесь нужно использовать перебор всех элементов через цикл for-earch и метод Map.keySet.
-        return null;
+        for (User key:users.keySet()) {
+            if (key.getPassport().equals(passport)) {
+                foundUser = key;
+            }
+        }
+        return foundUser;
     }
 
     // ищет счет пользователя по реквизитам.
     public Account findByRequisite(String requisite) {
-        // Сначала нужно найти пользователя.
-// Потом получить список счетов этого пользователя и в нем найти нужный счет.
-        return null;
+
+        Account foundAccount = null;
+        for (List<Account> val: users.values()) {
+            for (Account currentAcc:val) {
+                if (currentAcc.getRequisite().equals(requisite)) {
+                    foundAccount = currentAcc;
+                    break;
+                }
+            }
+        }
+
+        return foundAccount;
     }
+
+    //ищет User'а по Account
+    public User findUserByRequisite(String requisite) {
+        User user = null;
+        for (Map.Entry<User, List<Account>> entry:users.entrySet()) {
+            if(entry.getValue().equals(requisite)) {
+                user= entry.getKey();
+            }
+        }
+        return user;
+    }
+
+
+    //ищет паспорт клиента по реквизиту счёта
+    public String findPassportByRequisite(String requisite) {
+        User foundUser=null;
+        String foundPassport = null;
+        for (List<Account> acc:users.values()) {
+            for(Account currentAcc:acc) {
+                if(currentAcc.getRequisite().equals(requisite)) {
+                    foundUser = findUserByRequisite(requisite);
+                    foundPassport = foundUser.getPassport();
+                    break;
+                }
+
+            }
+        }
+
+        return foundPassport;
+    }
+
 //Метод для перечисления денег с одного счёта на другой счёт.
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String destRequisite, double amount) {
         boolean rsl = false;
@@ -53,6 +98,20 @@ public class BankService {
         // внимание, что в моделях User и Account используется только одно поле passport и requisite
         // для сравнения объектов.
         // Это позволяет использовать эти методы, без информации о всех полях.
+        Account srcAcc = findByRequisite(srcRequisite);
+        Account destAcc = findByRequisite(destRequisite);
+        //if паспорта совпадают с паспортами владельцев счетов и такие реквизиты !=0 и остаток на srcсчету больше, чем amount
+        String passportOfTheSrcAccountOwner =  findPassportByRequisite(srcRequisite);
+        String passportOfTheDestAccountOwner =  findPassportByRequisite(destRequisite);
+     if(
+             srcAcc!=null && destAcc!=null //такие счета существуют
+            && srcPassport.equals(passportOfTheSrcAccountOwner) //предъявляемый паспорт является паспортом владельца счёта списания
+     && destPassport.equals(passportOfTheDestAccountOwner) //указываемый паспорт является паспортом владельца счёта начисления
+             && srcAcc.getBalance()>amount
+     ) {
+        srcAcc.setBalance(srcAcc.getBalance() - amount);
+        destAcc.setBalance(destAcc.getBalance() + amount);
+    }
         return rsl;
     }
 
