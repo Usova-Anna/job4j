@@ -11,81 +11,53 @@ public class BankService {
 
     // добавить пользователя в систему
     public void addUser(User user) {
-      users.putIfAbsent(user, new ArrayList<Account>());
+        users.putIfAbsent(user, new ArrayList<Account>());
     }
 
     //Должен добавить новый счет к пользователю.
     public void addAccount(String passport, Account account) {
-         User owner = findByPassport(passport);
-if(users.get(owner).indexOf(account)==-1) { //если у этого клиента в его списке счетов отсутствует добавляемый счёт
+        User owner = findByPassport(passport);
+        if (owner != null & users.get(owner).indexOf(account) == -1) { //если у этого клиента в его списке счетов отсутствует добавляемый счёт
             users.get(owner).add(account);
-    System.out.println("Новый счёт добавлен для клиента "+ owner.getUsername());
+        } else {
+            System.out.println("Отсутствует owner или уже есть такой счёт");
         }
-
     }
-
 
     // ищет пользователя по номеру паспорта.
     public User findByPassport(String passport) {
-User foundUser = null;
-
-        for (User key:users.keySet()) {
+        User foundUser = null;
+        for (User key : users.keySet()) {
             if (key.getPassport().equals(passport)) {
                 foundUser = key;
+                break;
             }
         }
         return foundUser;
     }
 
     // ищет счет пользователя по реквизитам.
-    public Account findByRequisite(String requisite) {
-
+    public Account findByRequisite(String passport, String requisite) {
+        List<Account> foundList = null;
         Account foundAccount = null;
-        for (List<Account> val: users.values()) {
-            for (Account currentAcc:val) {
-                if (currentAcc.getRequisite().equals(requisite)) {
-                    foundAccount = currentAcc;
-                    break;
-                }
+        //ищем список счетов
+        for (User user : users.keySet()) {
+            if (user.getPassport().equals(passport)) { //есть пользователь с таким паспортом
+                foundList = users.get(user); // запоминаем его список счетов, получая value по key
+                break;
             }
         }
-
+        //ищем в списке счетов счёт с заданными реквизитами
+        for (Account acc : foundList) {
+            if (acc.getRequisite().equals(requisite)) {
+                foundAccount = acc;
+                break;
+            }
+        }
         return foundAccount;
     }
 
-    //ищет User'а по Account
-    public User findUserByRequisite(String requisite) {
-        User user = null;
-        for (Map.Entry<User, List<Account>> entry:users.entrySet()) {
-            for (int i=0;i<entry.getValue().size();i++) {
-                if (entry.getValue().get(i).equals(requisite)){
-                    user = entry.getKey();
-                }
-            }
-        }
-        return user;
-    }
-
-
-    //ищет паспорт клиента по реквизиту счёта
-    public String findPassportByRequisite(String requisite) {
-        User foundUser=null;
-        String foundPassport = null;
-        for (List<Account> acc:users.values()) {
-            for(Account currentAcc:acc) {
-                if(currentAcc.getRequisite().equals(requisite)) {
-                    foundUser = findUserByRequisite(requisite);
-                    foundPassport = foundUser.getPassport();
-                    break;
-                }
-
-            }
-        }
-
-        return foundPassport;
-    }
-
-//Метод для перечисления денег с одного счёта на другой счёт.
+    //Метод для перечисления денег с одного счёта на другой счёт. ПО ПАСПОРТУ НАЙТИ ЮЗЕРА, У ЮЗЕРА - СПИСОК СЧЕТОВ, ИЗ СПИСКА СЧЕТОВ- СЧЁТ С НУЖНЫМ РЕКВИЗИТОМ.
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String destRequisite, double amount) {
         boolean rsl = false;
         //Если счёт не найден или не хватает денег на счёте srcAccount (с которого переводят), то метод должен вернуть false.
@@ -100,24 +72,15 @@ User foundUser = null;
         // внимание, что в моделях User и Account используется только одно поле passport и requisite
         // для сравнения объектов.
         // Это позволяет использовать эти методы, без информации о всех полях.
-        Account srcAcc = findByRequisite(srcRequisite);
-        Account destAcc = findByRequisite(destRequisite);
-        //if паспорта совпадают с паспортами владельцев счетов и такие реквизиты !=0 и остаток на srcсчету больше, чем amount
-        String passportOfTheSrcAccountOwner =  findPassportByRequisite(srcRequisite);
-        String passportOfTheDestAccountOwner =  findPassportByRequisite(destRequisite);
-     if(
-             srcAcc!=null && destAcc!=null //такие счета существуют
-            && srcPassport.equals(passportOfTheSrcAccountOwner) //предъявляемый паспорт является паспортом владельца счёта списания
-     && destPassport.equals(passportOfTheDestAccountOwner) //указываемый паспорт является паспортом владельца счёта начисления
-             && srcAcc.getBalance()>amount
-     ) {
-        srcAcc.setBalance(srcAcc.getBalance() - amount);
-        destAcc.setBalance(destAcc.getBalance() + amount);
-    }
+        Account srcAcc = findByRequisite(srcPassport, srcRequisite);
+        Account destAcc = findByRequisite(destPassport, destRequisite);
+        if (srcAcc != null && destAcc != null //такие счета существуют
+                && srcAcc.getBalance() > amount
+        ) {
+            srcAcc.setBalance(srcAcc.getBalance() - amount);
+            destAcc.setBalance(destAcc.getBalance() + amount);
+            rsl = true;
+        }
         return rsl;
     }
-
-
-
-
 }
