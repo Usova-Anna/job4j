@@ -17,7 +17,7 @@ public class BankService {
     //Должен добавить новый счет к пользователю.
     public void addAccount(String passport, Account account) {
         User owner = findByPassport(passport);
-        if (owner != null & users.get(owner).indexOf(account) == -1) { //если у этого клиента в его списке счетов отсутствует добавляемый счёт
+        if (owner != null && !users.get(owner).contains(account)) { //если у этого клиента в его списке счетов отсутствует добавляемый счёт
             users.get(owner).add(account);
         } else {
             System.out.println("Отсутствует owner или уже есть такой счёт");
@@ -38,15 +38,9 @@ public class BankService {
 
     // ищет счет пользователя по реквизитам.
     public Account findByRequisite(String passport, String requisite) {
-        List<Account> foundList = null;
         Account foundAccount = null;
         //ищем список счетов
-        for (User user : users.keySet()) {
-            if (user.getPassport().equals(passport)) { //есть пользователь с таким паспортом
-                foundList = users.get(user); // запоминаем его список счетов, получая value по key
-                break;
-            }
-        }
+        List<Account> foundList = users.get(findByPassport(passport)); //Нашли User по паспорту и использовали его в качестве key для получения его списка счетов
         //ищем в списке счетов счёт с заданными реквизитами
         for (Account acc : foundList) {
             if (acc.getRequisite().equals(requisite)) {
