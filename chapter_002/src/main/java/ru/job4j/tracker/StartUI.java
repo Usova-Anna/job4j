@@ -18,41 +18,21 @@ public class StartUI {
             System.out.print("ВЫ ВЫБРАЛИ " + choice);
             //РАЗВЕТВЛЕНИЕ ЛОГИКИ В ЗАВИСИМОСТИ ОТ ВЫБРАННОГО ПУНКТА МЕНЮ
             switch (choice) {
-                case 0: {
-                    //ADD
-                    StartUI.add(scanner, tracker);
-                    break;
-                }
-                case 1: {
-                    //SHOW
-                    StartUI.show(tracker);
-                    break;
-                }
-                case 2: {
-                    //EDIT
-                    StartUI.edit(scanner, tracker);
-                    break;
-                }
-                case 3: {
-                    //DELETE
-                    StartUI.delete(scanner, tracker);
-                    break;
-                }
-                case 4: {
-                    //FIND BY ID
-                    StartUI.findById(scanner, tracker);
-                    break;
-                }
-                case 5: {
-                    //FIND BY NAME
-                    StartUI.findByName(scanner, tracker);
-                    break;
-                }
-                case 6: {
+                //ADD
+                case 0: StartUI.add(scanner, tracker); break;
+                //SHOW
+                case 1: StartUI.show(tracker); break;
+                //EDIT
+                case 2:  StartUI.edit(scanner, tracker); break;
+                //DELETE
+                case 3:     StartUI.delete(scanner, tracker); break;
+                //FIND BY ID
+                case 4: StartUI.findById(scanner, tracker); break;
+                //FIND BY NAME
+                case 5:  StartUI.findByName(scanner, tracker); break;
                     //QUIT
-                    run = StartUI.quit();
-                    break;
-                }
+                case 6:     run = StartUI.quit(); break;
+
                 default:
                     System.out.println("Такого пункта меню нет. Введите номер пункта меню (от 0 до 6).");
             }
@@ -75,13 +55,13 @@ public class StartUI {
 
     private void showMenu() {
         System.out.println("ВЫБЕРИТЕ ПУНКТ МЕНЮ:");
-        System.out.println("0. Add new Item\n" +
-                "1. Show all items\n" +
-                "2. Edit item\n" +
-                "3. Delete item\n" +
-                "4. Find item by Id\n" +
-                "5. Find items by name\n" +
-                "6. Exit Program");
+        System.out.println("0. Add new Item\n"
+                + "1. Show all items\n"
+                + "2. Edit item\n"
+                + "3. Delete item\n"
+                + "4. Find item by Id\n"
+                + "5. Find items by name\n"
+                + "6. Exit Program");
     }
 
     public static void findByName(Input scanner, Tracker tracker) {

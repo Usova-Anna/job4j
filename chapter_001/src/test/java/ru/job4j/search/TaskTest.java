@@ -7,7 +7,7 @@ import static org.junit.Assert.assertThat;
 
 public class TaskTest {
     @Test
-    public void WhenHigherPriority() {
+    public void whenHigherPriority() {
 
         PriorityQueue pq = new PriorityQueue();
         pq.put(new Task("low", 5));
@@ -18,7 +18,7 @@ public class TaskTest {
     }
 
     @Test
-    public void WhenHigherPriorityIsFirst() {
+    public void whenHigherPriorityIsFirst() {
 
         PriorityQueue pq = new PriorityQueue();
         pq.put(new Task("high", 1));
@@ -30,7 +30,7 @@ public class TaskTest {
     }
 
     @Test
-    public void WhenHigherPriorityIsLast() {
+    public void whenHigherPriorityIsLast() {
 
         PriorityQueue pq = new PriorityQueue();
         pq.put(new Task("low", 3));

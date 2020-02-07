@@ -10,15 +10,13 @@ public class ConvertList2Array {
         System.out.println("Количество групп - " + groups);
         int[][] array = new int[groups][cells];
         int row = -1, cell = 0;
-        int itemIndex=0; //для избегания применения .indexOf()
+        int itemIndex = 0; //для избегания применения .indexOf()
         for (Integer num : list) {
-
             if (itemIndex % cells == 0) {
                 row++;
                 cell = 0;
             } else {
                 cell++;
-
             }
             array[row][cell] = num;
             itemIndex++;
@@ -27,7 +25,6 @@ public class ConvertList2Array {
     }
 
     public static void main(String[] args) {
-
         List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7)); //List.of
         int[][] rsl = toArray(list, 3);
         for (int[] row : rsl) {
@@ -37,5 +34,4 @@ public class ConvertList2Array {
             System.out.println();
         }
     }
-
 }

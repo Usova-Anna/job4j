@@ -154,7 +154,7 @@ public class Tracker {
         return Arrays.copyOf(rsl, index);
     }
 
-    public Item findById(String id) {//проверяет в цикле все элементы массива this.items,
+    public Item findById(String id) { //проверяет в цикле все элементы массива this.items,
         // сравнивая id с аргументом String id и возвращает найденный Item.
         // Если Item не найден - возвращает null.
         Item found = null;
@@ -164,7 +164,7 @@ public class Tracker {
                 break;
             }
         }
-        return found;// По умолчанию вернёт null.
+        return found; // По умолчанию вернёт null.
     }
 
     public static void main(String[] args) {

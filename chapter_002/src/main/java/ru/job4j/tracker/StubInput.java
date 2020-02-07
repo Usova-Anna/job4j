@@ -1,7 +1,7 @@
 package ru.job4j.tracker;
 
 public class StubInput implements Input {
-    private String[] answers;//поле с вариантами ответов пользовтеля
+    private String[] answers; //поле с вариантами ответов пользовтеля
     private int position = 0;
 
     public StubInput(String[] answers) {

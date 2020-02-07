@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 public class UniqueTextTest {
 
     @Test
-    public void SameTexts() {
+    public void sameTexts() {
 
         String origin = "My cat eats a mouse";
         String text = "My cat eats a mouse";

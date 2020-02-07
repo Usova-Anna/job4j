@@ -17,7 +17,7 @@ public class TrackerTest {
     }
 
     @Test
-    public void whenReplaceItemWithItem2() {// При replace заменяем в старой заявке имя, описание и остальные поля.
+    public void whenReplaceItemWithItem2() { // При replace заменяем в старой заявке имя, описание и остальные поля.
         //перенесли generateID в Item, переделать этот тест.
         System.out.println("----------------ЗАМЕНА ЗАЯВКИ------------");
         Tracker tracker = new Tracker();
@@ -29,7 +29,7 @@ public class TrackerTest {
         item2.setId(id); //Присваиваем новой заявке старый Id
         System.out.println("ID item: " + id + "; name item: " + item.getName());
         tracker.replace(id, item2);
-        System.out.println("New ID " + item2.getId()+" item:"+item2.getName()); //Мы заменяем заявку. Но если хотим вывести на печать ID, то надо делать add()?!
+        System.out.println("New ID " + item2.getId() + " item:" + item2.getName()); //Мы заменяем заявку. Но если хотим вывести на печать ID, то надо делать add()?!
         assertThat(item2.getName(), is("test2")); //
     }
 

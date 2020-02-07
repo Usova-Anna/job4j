@@ -16,7 +16,7 @@ public class PriorityQueue {
      */
     public void put(Task task) {
 
-        int index = 0;//индекс вставки элемента, чтобы не запускать цикл повторно функцией indexOf
+        int index = 0; //индекс вставки элемента, чтобы не запускать цикл повторно функцией indexOf
 
         for (Task element : tasks) {
             if (task.getPriority() > element.getPriority()) {
