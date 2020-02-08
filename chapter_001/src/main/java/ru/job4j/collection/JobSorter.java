@@ -10,13 +10,11 @@ public class JobSorter {
                 new Job("Fix bugs", 4),
                 new Job("Impl task", 2),
                 new Job("Reboot server", 1)
-        );
+                                      );
         System.out.println(jobs);
         Collections.sort(jobs);
         System.out.println(jobs);
         Collections.sort(jobs, new SortByNameJob());
         System.out.println(jobs);
-
-
     }
 }
