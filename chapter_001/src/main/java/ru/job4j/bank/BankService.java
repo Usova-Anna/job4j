@@ -25,7 +25,7 @@ public class BankService {
     }
 
     // ищет пользователя по номеру паспорта.
-    public User findByPassport(String passport) {
+    public User findByPassport(String passport) throws NullPointerException {
         User foundUser = null;
         for (User key : users.keySet()) {
             if (key.getPassport().equals(passport)) {
@@ -33,20 +33,29 @@ public class BankService {
                 break;
             }
         }
+        if (foundUser == null) {
+            throw new NullPointerException("Клиента с таким паспортом не найдено");
+        }
         return foundUser;
     }
 
     // ищет счет пользователя по реквизитам.
-    public Account findByRequisite(String passport, String requisite) {
+    public Account findByRequisite(String passport, String requisite) throws NullPointerException {
         Account foundAccount = null;
         //ищем список счетов
         List<Account> foundList = users.get(findByPassport(passport)); //Нашли User по паспорту и использовали его в качестве key для получения его списка счетов
+        if (foundList == null) {
+            throw new NullPointerException("У клиента с таким паспортом не найдено счетов");
+        }
         //ищем в списке счетов счёт с заданными реквизитами
         for (Account acc : foundList) {
             if (acc.getRequisite().equals(requisite)) {
                 foundAccount = acc;
                 break;
             }
+        }
+        if (foundAccount == null) {
+            throw new NullPointerException("У клиента не найдено счетов с такими реквизитами");
         }
         return foundAccount;
     }
