@@ -25,7 +25,9 @@ public class ItemSorterTest {
                 new Item("Just don't do it"),
                 new Item("Sort things later")
                                            );
-        assertThat(result, is(expected));
+        assertThat(result.get(0).getName(), is(expected.get(0).getName()));
+        assertThat(result.get(1).getName(), is(expected.get(1).getName()));
+        assertThat(result.get(2).getName(), is(expected.get(2).getName()));
     }
 
     @Test
@@ -42,6 +44,8 @@ public class ItemSorterTest {
                 new Item("Just don't do it"),
                 new Item("Do it some day")
                                            );
-        assertThat(result, is(expected));
+        assertThat(result.get(0).getName(), is(expected.get(0).getName()));
+        assertThat(result.get(1).getName(), is(expected.get(1).getName()));
+        assertThat(result.get(2).getName(), is(expected.get(2).getName()));
     }
 }
