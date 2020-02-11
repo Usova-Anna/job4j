@@ -9,12 +9,19 @@ public class BankService {
     //все пользователей системы с привязанными к ним счетами.
     private Map<User, List<Account>> users = new HashMap<>();
 
-    // добавить пользователя в систему
+    /** Добавить пользователя в систему
+     *
+     * @param user
+     */
     public void addUser(User user) {
         users.putIfAbsent(user, new ArrayList<Account>());
     }
 
-    //Должен добавить новый счет к пользователю.
+    /**Добавить новый счет к пользователю.
+     *
+     * @param passport
+     * @param account
+     */
     public void addAccount(String passport, Account account) {
         User owner = findByPassport(passport);
         if (owner != null && !users.get(owner).contains(account)) { //если у этого клиента в его списке счетов отсутствует добавляемый счёт
@@ -24,8 +31,12 @@ public class BankService {
         }
     }
 
-    // ищет пользователя по номеру паспорта.
-    public User findByPassport(String passport) throws NullPointerException {
+    /** Ищет пользователя по номеру паспорта.
+     *
+     * @param passport
+     * @return
+     */
+    public User findByPassport(String passport) {
         User foundUser = null;
         for (User key : users.keySet()) {
             if (key.getPassport().equals(passport)) {
@@ -33,17 +44,22 @@ public class BankService {
                 break;
             }
         }
-        if (foundUser == null) {
-            throw new NullPointerException("Клиента с таким паспортом не найдено");
-        }
+
         return foundUser;
     }
 
-    // ищет счет пользователя по реквизитам.
+    /** ищет счет пользователя по реквизитам.
+     *
+     * @param passport
+     * @param requisite
+     * @return
+     * @throws NullPointerException
+     */
     public Account findByRequisite(String passport, String requisite) throws NullPointerException {
         Account foundAccount = null;
         //ищем список счетов
-        List<Account> foundList = users.get(findByPassport(passport)); //Нашли User по паспорту и использовали его в качестве key для получения его списка счетов
+        User foundUser = findByPassport(passport); //может быть null
+        List<Account> foundList = users.get(foundUser); //Нашли User по паспорту и использовали его в качестве key для получения его списка счетов
         if (foundList == null) {
             throw new NullPointerException("У клиента с таким паспортом не найдено счетов");
         }
