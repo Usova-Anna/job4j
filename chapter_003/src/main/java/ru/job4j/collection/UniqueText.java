@@ -13,7 +13,7 @@ public class UniqueText {
             check.add(originWord); //получаем HashSet с уникальными словами текста origin
         }
         for (String checkedWord : text) {
-            if (!check.contains(checkedWord)) {//если текст не содержит слово
+            if (!check.contains(checkedWord)) { //если текст не содержит слово
                 rsl = true; //то текст уникальный
                 break;
             }

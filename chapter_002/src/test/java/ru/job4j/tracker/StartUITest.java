@@ -14,7 +14,7 @@ public class StartUITest {
         startUI.init(input);
         Item tested = tracker.findAll()[0];
         Item expected = new Item("Buy eggs and potatoes");
-        assertThat(tested.getName(),is(expected.getName()));
+        assertThat(tested.getName(), is(expected.getName()));
     }
 }
 
