@@ -7,34 +7,29 @@ public class StringCompare implements Comparator<String> {
     @Override
     public int compare(String left, String right) {
         int result = 0;
-        if (left == null && right == null) {
-            return 0;
-        } else if (left == null || left.isEmpty()) {
-            return -1;
-        } else if (right == null || right.isEmpty()) {
-            return 1;
+        if (left == null || right == null) {
+            throw new NullPointerException("Пустая строка");
         }
         int leftLength = left.length();
         int rightLength = right.length();
-        char[] leftArray = new char[leftLength];
-        char[] rightArray = new char[rightLength];
-        int end = leftLength > rightLength ? rightLength : leftLength;
-        //запись входящих String в char-массивы
-        for (int i = 0; i < leftLength; i++) {
-            leftArray[i] = left.charAt(i);
+        if (leftLength == 0 || rightLength == 0) {
+            throw new IllegalArgumentException("Пустая строка");
         }
-        for (int j = 0; j < rightLength; j++) {
-            rightArray[j] = right.charAt(j);
-        }
+        int end = Math.min(leftLength, rightLength);
+        char currentLeftChar = 0;
+        char currentRightChar = 0;
         //сравнение пока длина одинаковая
         for (int i = 0; i < end; i++) {
-            result = Character.compare(leftArray[i], rightArray[i]);
+            currentLeftChar = left.charAt(i);
+            currentRightChar = right.charAt(i);
+            result = Character.compare(currentLeftChar, currentRightChar);
             if (result != 0) {
                 break;
             }
         }
-        if (result==0){
-            return leftLength-rightLength;
+        //если длина исходных строк разная, а первые символы одинаковые
+        if (result == 0) {
+            return leftLength - rightLength;
         }
         return result;
     }

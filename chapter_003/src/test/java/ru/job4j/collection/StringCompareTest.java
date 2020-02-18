@@ -57,4 +57,19 @@ public class StringCompareTest {
                                  );
         assertThat(rst, lessThan(0));
     }
+
+    @Test(expected = NullPointerException.class)
+    public void whenSecondStringIsNull() {
+        StringCompare compare = new StringCompare();
+        compare.compare("Hey", null);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+        public void whenFirstStringIs0() {
+        StringCompare compare = new StringCompare();
+        compare.compare("","Oops");
+
+    }
+
+
 }
