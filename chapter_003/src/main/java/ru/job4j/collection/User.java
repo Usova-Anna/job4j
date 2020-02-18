@@ -10,13 +10,15 @@ public class User implements Comparable<User> {
         this.name = name;
         this.age = age;
     }
-public String getName(){
-        return this.name;
-}
 
-public int getAge(){
+    public String getName() {
+        return this.name;
+    }
+
+    public int getAge() {
         return this.age;
-}
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
