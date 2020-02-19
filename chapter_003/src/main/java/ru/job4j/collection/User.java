@@ -11,6 +11,14 @@ public class User implements Comparable<User> {
         this.age = age;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
