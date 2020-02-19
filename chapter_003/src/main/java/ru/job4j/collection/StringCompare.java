@@ -7,14 +7,8 @@ public class StringCompare implements Comparator<String> {
     @Override
     public int compare(String left, String right) {
         int result = 0;
-        if (left == null || right == null) {
-            throw new NullPointerException("Пустая строка");
-        }
         int leftLength = left.length();
         int rightLength = right.length();
-        if (leftLength == 0 || rightLength == 0) {
-            throw new IllegalArgumentException("Пустая строка");
-        }
         int end = Math.min(leftLength, rightLength);
         char currentLeftChar = 0;
         char currentRightChar = 0;

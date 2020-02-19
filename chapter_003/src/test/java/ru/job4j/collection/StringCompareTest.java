@@ -64,12 +64,12 @@ public class StringCompareTest {
         compare.compare("Hey", null);
     }
 
-    @Test (expected = IllegalArgumentException.class)
-        public void whenFirstStringIs0() {
-        StringCompare compare = new StringCompare();
-        compare.compare("","Oops");
-
-    }
+//    @Test (expected = IllegalArgumentException.class)
+//        public void whenFirstStringIs0() {
+//        StringCompare compare = new StringCompare();
+//        compare.compare("","Oops");
+//
+//    }
 
 
 }
