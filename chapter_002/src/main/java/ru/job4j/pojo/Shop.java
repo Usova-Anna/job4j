@@ -30,6 +30,7 @@ public class Shop {
                 System.out.println("null");
             }
         }
+        products[products.length - 1] = null;
         System.out.println("Массив после удаления:");
         for (int i = 0; i < products.length; i++) {
             if (products[i] != null) {

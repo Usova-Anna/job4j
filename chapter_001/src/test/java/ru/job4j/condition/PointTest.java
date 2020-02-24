@@ -2,6 +2,7 @@ package ru.job4j.condition;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -11,8 +12,8 @@ public class PointTest {
         Point a = new Point(0, 0);
         Point b = new Point(2, 2);
         double tested = a.distance(b);
-        double expected = 3.1622776601683795;
-        assertThat(tested, is(expected));
+        double expected = 2.8284;
+        assertEquals(tested, expected, 0.005);
     }
 
     @Test

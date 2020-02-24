@@ -37,7 +37,7 @@ public class Item {
 
 @Override
     public String toString() {
-        return "\n{"+ this.name+"}";
+        return "\n{" + this.name + "}";
 }
 
 
