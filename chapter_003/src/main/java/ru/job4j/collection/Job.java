@@ -20,16 +20,19 @@ public class Job implements Comparable<Job> {
 
 
 @Override
-public String toString(){
-    return "\nJob{" +
-            "name='" + name + '\'' +
-            ",\npriority=" + priority +
-            "}";
+public String toString() {
+    return "\nJob{"
+            + "name='"
+            + name
+            + '\''
+            + ",\npriority="
+            + priority
+            + "}";
 }
 
 
     @Override
     public int compareTo(Job another) {
-        return Integer.compare(priority,another.priority);
+        return Integer.compare(priority, another.priority);
     }
 }

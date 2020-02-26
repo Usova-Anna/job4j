@@ -13,15 +13,12 @@ public class JobSorter {
                 new Job("Fix bug", 3),
                 new Job("X task", 0)
                                       );
-        System.out.println("Initial collection\n"+jobs);
+        System.out.println("Initial collection\n" + jobs);
         Collections.sort(jobs);
-        System.out.println("\nCollection after sorting using Comparable interface\n"+jobs);
-
+        System.out.println("\nCollection after sorting using Comparable interface\n" + jobs);
         Collections.sort(jobs, new SortByNameJob());
-        System.out.println("\nCollection after using Comparator SortByNameJob\n"+jobs);
-
-        Collections.sort(jobs,new JobDescByName().thenComparing(new JobDescByPriority()));
-        System.out.println("\nCollection after using two Comparators"+jobs);
-
+        System.out.println("\nCollection after using Comparator SortByNameJob\n" + jobs);
+        Collections.sort(jobs, new JobDescByName().thenComparing(new JobDescByPriority()));
+        System.out.println("\nCollection after using two Comparators" + jobs);
     }
 }
