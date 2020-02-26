@@ -1,10 +1,4 @@
 # job4j
-Anna. Тестовое изменение readme. 
-Test changing 14th of June.
+[![Build Status](https://travis-ci.org/Usova-Anna/job4j.svg?branch=master)](https://travis-ci.org/Usova-Anna/job4j)
+[![codecov](https://codecov.io/gh/Usova-Anna/job4j/branch/master/graph/badge.svg)](https://codecov.io/gh/Usova-Anna/job4j)
 
-Merge conflicts.
-
-В курсе проводилась работа с ветками git.
-Это изменение создано в ветке hotfix и сразу закоммичено в неё.
-Это изменение для задачи 147961. Запушим его из локальной ветки task_147961.
-Оба изменения из веток hotfix и task_147961 объединены.
