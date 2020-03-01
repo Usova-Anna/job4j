@@ -22,4 +22,4 @@ notifications:
       continuousIntegrationReports@list.ru
     on_success: always # default: change or never
     on_failure: always # default: always
-
+#df;slkdf
