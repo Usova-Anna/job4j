@@ -3,7 +3,6 @@ package ru.job4j.collection;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
@@ -25,33 +24,35 @@ public class DepartmentsTest {
         List<String> result = Departments.fillGaps(input);
         assertThat(result, is(expect));
     }
-@Test
+
+    @Test
     public void whenSortAscending() {
-    List<String> input = Arrays.asList(
-            "K1/SK1",
-            "K2",
-            "K2/SK1",
-            "K2/SK1/SSK1",
-            "K1",
-            "K1/SK1/SSK1",
-            "K1/SK1/SSK2",
-            "K1/SK2",
-            "K2/SK1/SSK2"
-                                      );
-    List<String> expect = Arrays.asList(
-            "K1",
-            "K1/SK1",
-            "K1/SK1/SSK1",
-            "K1/SK1/SSK2",
-            "K1/SK2",
-            "K2",
-            "K2/SK1",
-            "K2/SK1/SSK1",
-            "K2/SK1/SSK2"
-                                       );
-    Departments.sortAsc(input);
-    assertThat(input, is (expect));
-}
+        List<String> input = Arrays.asList(
+                "K1/SK1",
+                "K2",
+                "K2/SK1",
+                "K2/SK1/SSK1",
+                "K1",
+                "K1/SK1/SSK1",
+                "K1/SK1/SSK2",
+                "K1/SK2",
+                "K2/SK1/SSK2"
+                                          );
+        List<String> expect = Arrays.asList(
+                "K1",
+                "K1/SK1",
+                "K1/SK1/SSK1",
+                "K1/SK1/SSK2",
+                "K1/SK2",
+                "K2",
+                "K2/SK1",
+                "K2/SK1/SSK1",
+                "K2/SK1/SSK2"
+                                           );
+        Departments.sortAsc(input);
+        assertThat(input, is(expect));
+    }
+
     @Test
     public void whenAllDepsThenSortedAscended() {
         List<String> input = Arrays.asList("K1/SK1/SSK1", "K2/SK1/SSK1", "K1/SK1/SSK2", "K1/SK2", "K1/SK1", "K2/SK1/SSK2");
@@ -59,9 +60,10 @@ public class DepartmentsTest {
         List<String> result = Departments.fillGaps(input);
         assertThat(result, is(expect));
     }
+
     //public void whenSortDescendingInsideAscending
     @Test
-    public void whenSortDescendingThenAscending () {
+    public void whenSortDescendingThenAscending() {
         List<String> input = Arrays.asList(
                 "K1/SK1/SSK1",
                 "K2/SK1/SSK1",
@@ -83,6 +85,6 @@ public class DepartmentsTest {
                                            );
         List<String> result = Departments.fillGaps(input);
         Departments.sortDesc(result);
-        assertThat(result, is (expect));
+        assertThat(result, is(expect));
     }
 }

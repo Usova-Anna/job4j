@@ -3,11 +3,6 @@ package ru.job4j.collection;
 import java.util.*;
 
 public class Departments {
-    public static void main(String[] args) {
-        List<String> list = Arrays.asList("k1/sk1");
-        fillGaps(list);
- //       sortAsc(list);
-    }
 
     public static List<String> fillGaps(List<String> deps) {
         HashSet<String> tmp = new HashSet<>();
@@ -30,6 +25,7 @@ public class Departments {
     }
 
     public static void sortAsc(List<String> orgs) {
+
         Collections.sort(orgs, Comparator.naturalOrder());
     }
 
